@@ -111,9 +111,11 @@ public class Model extends Observable {
         // TODO: Modify this.board (and perhaps this.score) to account
         // for the tilt to the Side SIDE. If the board changed, set the
         // changed local variable to true.
+
         changed = false;
         boolean flag3 = false;
         boolean flag2 = false;
+        board.startViewingFrom(side);
         for(int col = 0; col < board.size(); col += 1 ){
             for(int row = 3; row >= 0; row -= 1 ){
                 if(board.tile(col, row)!= null){
@@ -206,7 +208,10 @@ public class Model extends Observable {
                     }
                 }
             }
+            flag3 = false;
+            flag2 = false;
         }
+        board.startViewingFrom(Side.NORTH);
         checkGameOver();
         if (changed) {
             setChanged();
